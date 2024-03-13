@@ -1,0 +1,141 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "status": 1,
+      "username": "user1",
+      "password": "$2a$10$SR.FrzkphNeP4yn.GKoTX.DbWQLjXVwdabXS0JPOoyJ5gNxJ9VA1O",
+      "has_password": true,
+      "home_dir": "/srv/sftpgo/data/user1",
+      "uid": 0,
+      "gid": 0,
+      "max_sessions": 0,
+      "quota_size": 0,
+      "quota_files": 0,
+      "permissions": {
+        "/": [
+          "*"
+        ]
+      },
+      "upload_data_transfer": 0,
+      "download_data_transfer": 0,
+      "total_data_transfer": 0,
+      "created_at": 1710323835262,
+      "updated_at": 1710324087524,
+      "filters": {
+        "hooks": {
+          "external_auth_disabled": false,
+          "pre_login_disabled": false,
+          "check_password_disabled": false
+        },
+        "totp_config": {
+          "secret": {}
+        }
+      },
+      "filesystem": {
+        "provider": 0,
+        "osconfig": {},
+        "s3config": {
+          "access_secret": {}
+        },
+        "gcsconfig": {
+          "credentials": {}
+        },
+        "azblobconfig": {
+          "account_key": {},
+          "sas_url": {}
+        },
+        "cryptconfig": {
+          "passphrase": {}
+        },
+        "sftpconfig": {
+          "password": {},
+          "private_key": {},
+          "key_passphrase": {}
+        },
+        "httpconfig": {
+          "password": {},
+          "api_key": {}
+        }
+      },
+      "groups": [
+        {
+          "name": "default-storage-group",
+          "type": 1
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "default-storage-group",
+      "created_at": 1710323835235,
+      "updated_at": 1710324087510,
+      "user_settings": {
+        "home_dir": "",
+        "max_sessions": 0,
+        "quota_size": 0,
+        "quota_files": 0,
+        "permissions": {
+          "/": [
+            "list",
+            "download",
+            "delete_files"
+          ],
+          "/current": [
+            "list",
+            "download"
+          ],
+          "/old": [
+            "list",
+            "download"
+          ]
+        },
+        "upload_data_transfer": 0,
+        "download_data_transfer": 0,
+        "total_data_transfer": 0,
+        "filters": {
+          "hooks": {
+            "external_auth_disabled": false,
+            "pre_login_disabled": false,
+            "check_password_disabled": false
+          }
+        },
+        "filesystem": {
+          "provider": 1,
+          "osconfig": {},
+          "s3config": {
+            "bucket": "test",
+            "key_prefix": "%username%/",
+            "region": "eu-central-1",
+            "access_key": "miniouser",
+            "endpoint": "http://minio:9000",
+            "storage_class": "STANDARD",
+            "force_path_style": true,
+            "access_secret": {
+              "status": "Secretbox",
+              "payload": "Xyps8Al7IwPclz1QMeo/kcNlZPhT2CoVWiUoAOM5mcEIdh7ipSXLL/LtinfokdnlxRPBVJ+g+auJ6YuvKG2YAmhnurWDqkv7+0gGLdsywVU=",
+              "key": "eafba95d21d0dc3842ecc2b39e3ba51a85e0fa3a5f291b51ede96633384deefe",
+              "additional_data": "group_default-storage-group"
+            }
+          },
+          "gcsconfig": {},
+          "azblobconfig": {},
+          "cryptconfig": {},
+          "sftpconfig": {},
+          "httpconfig": {}
+        }
+      }
+    }
+  ],
+  "folders": [],
+  "api_keys": [],
+  "shares": [],
+  "event_actions": [],
+  "event_rules": [],
+  "roles": [],
+  "ip_lists": [],
+  "configs": {},
+  "version": 16
+}

@@ -1,0 +1,48 @@
+---
+services:
+  sftpgo:
+    image: drakkan/sftpgo:v2.5.4-alpine
+    volumes:
+      - ./sftpgo.json:/opt/sftpgo.json
+    environment:
+      SFTPGO_DATA_PROVIDER__CREATE_DEFAULT_ADMIN: "true"
+      SFTPGO_DEFAULT_ADMIN_USERNAME: "admin"
+      SFTPGO_DEFAULT_ADMIN_PASSWORD: "nimda"
+      SFTPGO_LOADDATA_FROM: "/opt/sftpgo.json"
+      SFTPGO_COMMON__SETSTAT_MODE: "2"
+      SFTPGO_SFTPD__BINDINGS__0__PORT: "2022"
+    ports:
+      - 8080:8080 # Web GUI
+      - 2022:2022 # SFTP
+
+  minio:
+    image: minio/minio:RELEASE.2024-03-10T02-53-48Z
+    environment:
+      - MINIO_ROOT_USER=miniouser
+      - MINIO_ROOT_PASSWORD=ciugRTdpMTEhC/GITBpmi/GjXwumZnPdkoEzvSiT
+    command: ['server', '--address', ':9000', '--console-address', ':9001', '/data']
+    ports:
+      - 9000:9000 # S3
+      - 9001:9001 # Web GUI
+
+  mc:
+    image: minio/mc:RELEASE.2024-03-09T06-43-06Z
+    depends_on:
+      - minio
+    environment:
+      - MINIO_ROOT_USER=miniouser
+      - MINIO_ROOT_PASSWORD=ciugRTdpMTEhC/GITBpmi/GjXwumZnPdkoEzvSiT
+    volumes:
+      - ./example-data:/opt/example-data
+    # wait until minio is ready then create bucket 'test' and add some files to it
+    entrypoint: >
+      /bin/sh -c "
+      set -uo errexit;
+      until mc alias set minio http://minio:9000 $${MINIO_ROOT_USER} $${MINIO_ROOT_PASSWORD} ; do echo 'waiting for minio...' ; sleep 5 ; done;
+      mc mb minio/test;
+      touch -d '2 hours ago' /opt/example-data/current/some-current-file.txt;
+      touch -d '100 years ago' /opt/example-data/old/some-old-file.txt;
+      mc cp --recursive --preserve /opt/example-data/ minio/test/;
+      mc stat minio/test/current/some-current-file.txt;
+      mc stat minio/test/old/some-old-file.txt;
+      "
