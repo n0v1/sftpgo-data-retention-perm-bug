@@ -80,14 +80,10 @@
         "permissions": {
           "/": [
             "list",
-            "create_dirs"
-          ],
-          "/files": [
-            "list",
             "download",
             "delete_files"
           ],
-          "/files/*": [
+          "/*": [
             "list",
             "download"
           ]
@@ -144,7 +140,7 @@
         "retention_config": {
           "folders": [
             {
-              "path": "/files",
+              "path": "/",
               "retention": 100,
               "delete_empty_dirs": true,
               "ignore_user_permissions": true
@@ -190,7 +186,7 @@
             "retention_config": {
               "folders": [
                 {
-                  "path": "/files",
+                  "path": "/",
                   "retention": 100,
                   "delete_empty_dirs": true,
                   "ignore_user_permissions": true

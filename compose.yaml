@@ -42,7 +42,7 @@ services:
       mc mb minio/test;
       touch -d '2 hours ago' /opt/example-data/current/some-current-file.txt;
       touch -d '100 years ago' /opt/example-data/old/some-old-file.txt;
-      mc cp --recursive --preserve /opt/example-data/ minio/test/user1/files/;
-      mc stat minio/test/user1/files/current/some-current-file.txt;
-      mc stat minio/test/user1/files/old/some-old-file.txt;
+      mc cp --recursive --preserve /opt/example-data/ minio/test/user1/;
+      mc stat minio/test/user1/current/some-current-file.txt;
+      mc stat minio/test/user1/old/some-old-file.txt;
       "
