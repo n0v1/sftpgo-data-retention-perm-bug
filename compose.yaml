@@ -39,9 +39,9 @@ services:
       set -uo errexit;
       until mc alias set minio http://minio:9000 $${MINIO_ROOT_USER} $${MINIO_ROOT_PASSWORD} ; do echo 'waiting for minio...' ; sleep 5 ; done;
       mc mb minio/test;
-      touch -d '2 hours ago' /opt/example-data/current/some-current-file.txt;
-      touch -d '100 years ago' /opt/example-data/old/some-old-file.txt;
+      touch -d '2 hours ago' /opt/example-data/2024-03-13/some-current-file.txt;
+      touch -d '100 years ago' /opt/example-data/1999-01-01/some-old-file.txt;
       mc cp --recursive --preserve /opt/example-data/ minio/test/files/;
-      mc stat minio/test/files/current/some-current-file.txt;
-      mc stat minio/test/files/old/some-old-file.txt;
+      mc stat minio/test/files/2024-03-13/some-current-file.txt;
+      mc stat minio/test/files/1999-01-01/some-old-file.txt;
       "
