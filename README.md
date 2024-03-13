@@ -2,6 +2,7 @@
 
 ```
 docker compose up
+./trigger-retention-check.sh
 docker compose rm --force --volumes
 ```
 
