@@ -103,7 +103,6 @@
           "osconfig": {},
           "s3config": {
             "bucket": "test",
-            "key_prefix": "",
             "region": "eu-central-1",
             "access_key": "miniouser",
             "endpoint": "http://minio:9000",
