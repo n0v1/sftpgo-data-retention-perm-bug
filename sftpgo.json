@@ -80,14 +80,14 @@
         "permissions": {
           "/": [
             "list",
+            "create_dirs"
+          ],
+          "/files": [
+            "list",
             "download",
             "delete_files"
           ],
-          "/current": [
-            "list",
-            "download"
-          ],
-          "/old": [
+          "/files/*": [
             "list",
             "download"
           ]
@@ -132,8 +132,87 @@
   "folders": [],
   "api_keys": [],
   "shares": [],
-  "event_actions": [],
-  "event_rules": [],
+  "event_actions": [
+    {
+      "id": 1,
+      "name": "delete-old-files-user1",
+      "type": 8,
+      "options": {
+        "http_config": {},
+        "cmd_config": {},
+        "email_config": {},
+        "retention_config": {
+          "folders": [
+            {
+              "path": "/files",
+              "retention": 100,
+              "delete_empty_dirs": true,
+              "ignore_user_permissions": true
+            }
+          ]
+        },
+        "fs_config": {
+          "compress": {}
+        },
+        "pwd_expiration_config": {},
+        "idp_config": {}
+      }
+    }
+  ],
+  "event_rules": [
+    {
+      "id": 1,
+      "name": "delete-old-files-user1",
+      "status": 1,
+      "created_at": 1710324463695,
+      "updated_at": 1710324463695,
+      "trigger": 6,
+      "conditions": {
+        "options": {
+          "names": [
+            {
+              "pattern": "user1"
+            }
+          ]
+        }
+      },
+      "actions": [
+        {
+          "id": 1,
+          "name": "delete-old-files-user1",
+          "type": 8,
+          "options": {
+            "http_config": {
+              "password": {}
+            },
+            "cmd_config": {},
+            "email_config": {},
+            "retention_config": {
+              "folders": [
+                {
+                  "path": "/files",
+                  "retention": 100,
+                  "delete_empty_dirs": true,
+                  "ignore_user_permissions": true
+                }
+              ]
+            },
+            "fs_config": {
+              "compress": {}
+            },
+            "pwd_expiration_config": {},
+            "idp_config": {}
+          },
+          "order": 1,
+          "relation_options": {
+            "is_failure_action": false,
+            "stop_on_failure": false,
+            "execute_sync": false
+          }
+        }
+      ]
+    }
+  ],
   "roles": [],
   "ip_lists": [],
   "configs": {},
