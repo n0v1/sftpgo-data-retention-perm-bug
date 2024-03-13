@@ -78,12 +78,11 @@
         "quota_size": 0,
         "quota_files": 0,
         "permissions": {
-          "/": [
+          "/files": [
             "list",
-            "download",
-            "delete_files"
+            "download"
           ],
-          "/*": [
+          "/files/*": [
             "list",
             "download"
           ]
@@ -139,7 +138,7 @@
         "retention_config": {
           "folders": [
             {
-              "path": "/",
+              "path": "/files",
               "retention": 100,
               "delete_empty_dirs": true,
               "ignore_user_permissions": true
@@ -185,7 +184,7 @@
             "retention_config": {
               "folders": [
                 {
-                  "path": "/",
+                  "path": "/files",
                   "retention": 100,
                   "delete_empty_dirs": true,
                   "ignore_user_permissions": true
